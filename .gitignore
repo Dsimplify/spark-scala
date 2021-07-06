@@ -2,8 +2,8 @@
 /target/
 /venv/
 spark-scala.iml
-.idea
-cp
-cp1
-spark-warehouse
-output/
+/.idea/
+/cp/
+/cp1/
+/spark-warehouse/
+/output/
