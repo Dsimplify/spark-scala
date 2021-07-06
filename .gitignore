@@ -1,3 +1,7 @@
 # Project exclude paths
 /target/
 /venv/
+spark-scala.iml
+.idea
+cp
+cp1
