@@ -50,7 +50,9 @@ object ItemCF {
 
         import spark.implicits._
 
+        // 加载数据
         val ratingRDD = spark.sparkContext.textFile(RATING_DATA_PATH)
+        // 转换为DF
         val ratingDF: DataFrame = ratingRDD.map(item => {
             val data: Array[String] = item.split(",")
             (data(0).toInt, data(1).toInt, data(2).toDouble)
