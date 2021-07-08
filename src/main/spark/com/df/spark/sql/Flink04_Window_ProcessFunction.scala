@@ -31,6 +31,8 @@ object Flink04_Window_ProcessFunction {
 
         ds.select(udaf.toColumn).show()
 
+        spark.stop()
+
     }
 
     case class User(id: Int, name: String, age: Long)

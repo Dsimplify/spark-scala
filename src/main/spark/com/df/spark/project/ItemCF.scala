@@ -64,6 +64,7 @@ object ItemCF {
         // 计算同现相似度，得到商品的相似列表
         // 统计每个商品的评分个数
         val productRatingCountDF: DataFrame = ratingDF.groupBy("productId").count()
+
         // 在原有评分表上rating添加count
         val ratingWithCountDF: DataFrame = ratingDF.join(productRatingCountDF,"productId")
 
@@ -71,6 +72,7 @@ object ItemCF {
         val joinedDF: DataFrame = ratingWithCountDF.join(ratingWithCountDF, "userId")
           .toDF("userId", "product1", "score1", "count1", "product2", "score2", "count2")
           .select("userId", "product1", "count1", "product2", "count2")
+
         // 创建一张临时表，用于写SQL查询
         joinedDF.createOrReplaceTempView("joined")
 
