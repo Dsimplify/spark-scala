@@ -8,3 +8,4 @@ spark-scala.iml
 /spark-warehouse/
 /output/
 /input/
+profiles.xml
