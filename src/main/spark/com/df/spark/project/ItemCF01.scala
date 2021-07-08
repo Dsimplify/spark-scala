@@ -23,8 +23,8 @@ object ItemCF01 {
 
         // 提取用户id 和 商品id
         val userAndProduct: RDD[(Int, Int)] = ratingRDD.map(d => (d._1, d._2))
-        
-        // 都评价了i、j的用户数
+
+        // 获取用户和商品的笛卡尔积
         val ppRDD: RDD[((Int, Int), Int)] = userAndProduct.join(userAndProduct)
           .map(d => ((d._2._1, d._2._2), 1))
           .reduceByKey(_ + _)
