@@ -16,7 +16,7 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @param categories 商品分类
  * @param tags 商品UGC标签
  */
-case class Product(productId: Int, name: String, imageUrl: String, categories: String, tags: String)
+// case class Product(productId: Int, name: String, imageUrl: String, categories: String, tags: String)
 
 /**
  * Rating数据集
@@ -38,7 +38,7 @@ case class ProductRecs( productId: Int, recs: Seq[Recommendation] )
 object ItemCF {
 
     // 定义数据文件路径
-    val PRODUCT_DATA_PATH = "E:\\workspace\\spark-scala\\input\\products.csv"
+//     val PRODUCT_DATA_PATH = "E:\\workspace\\spark-scala\\input\\products.csv"
     val RATING_DATA_PATH = "E:\\workspace\\spark-scala\\input\\ratings.csv"
     val RESULT_PATH = "E:\\workspace\\spark-scala\\output\\result"
 
