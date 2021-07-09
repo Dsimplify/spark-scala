@@ -7,15 +7,15 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 
 
-/**
- * Product数据集
- *
- * @param productId 商品id
- * @param name 商品名称
- * @param imageUrl 商品图片的URL
- * @param categories 商品分类
- * @param tags 商品UGC标签
- */
+///**
+// * Product数据集
+// *
+// * @param productId 商品id
+// * @param name 商品名称
+// * @param imageUrl 商品图片的URL
+// * @param categories 商品分类
+// * @param tags 商品UGC标签
+// */
 // case class Product(productId: Int, name: String, imageUrl: String, categories: String, tags: String)
 
 /**
