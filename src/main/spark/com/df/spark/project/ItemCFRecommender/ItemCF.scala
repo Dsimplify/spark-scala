@@ -1,10 +1,11 @@
-package com.df.spark.project
+package com.df.spark.project.ItemCFRecommender
 
 import java.io.File
 
+import com.df.spark.project.ContentRecommender
+import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
 
 
 ///**
@@ -33,7 +34,7 @@ case class Rating(userId: Int, productId: Int, score: Double, timestamp: Int)
 case class Recommendation( productId: Int, score: Double )
 
 // 定义商品相似度列表
-case class ProductRecs( productId: Int, recs: Seq[Recommendation] )
+case class ProductRecs( productId: Int, recs: Seq[ContentRecommender.Recommendation] )
 
 object ItemCF {
 
@@ -89,7 +90,7 @@ object ItemCF {
             """.stripMargin
         ).cache()
 
-        val value: RDD[ProductRecs] = cooccurrenceDF.map { row =>
+        val value: RDD[ContentRecommender.ProductRecs] = cooccurrenceDF.map { row =>
                 val coocSim = cooccurrenceSim(row.getAs[Long]("cocount"),
                     row.getAs[Long]("count1"), row.getAs[Long]("count2"))
                 (row.getInt(0), (row.getInt(1), coocSim))
@@ -99,11 +100,11 @@ object ItemCF {
           .groupByKey()
           .map {
               case (productId, recs) =>
-                  ProductRecs(productId, recs.toList
+                  ContentRecommender.ProductRecs(productId, recs.toList
                     .filter(x => x._1 != productId)
                     .sortWith(_._2 > _._2)
                     .take(10)
-                    .map(x => Recommendation(x._1, x._2)))
+                    .map(x => ContentRecommender.Recommendation(x._1, x._2)))
           }
 
 
